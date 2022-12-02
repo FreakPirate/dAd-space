@@ -1,6 +1,7 @@
 import { Layout, Menu } from 'antd';
 import { useState } from 'react';
 import styled from 'styled-components';
+import UploadContainer from './UploadContainer';
 import UploadedContainer from './UploadedContainer';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
 		{ label: 'New Ad', key: 'newAd' },
 	];
 
-	const [selectedView, setSelectedView] = useState('dashboard');
+	const [selectedView, setSelectedView] = useState('newAd');
 
 	const [isUploaded, setIsUploaded] = useState(false);
 
@@ -37,8 +38,9 @@ function App() {
 					/>
 				</Sider>
 				<Layout>
-					<Content style={{overflow: 'initial', background: 'rgb(25, 25, 25)'}}>
-						{selectedView === 'dashboard' && isUploaded && <UploadedContainer />}
+        <Content style={{overflow: 'initial', background: 'rgb(25, 25, 25)'}}>
+						{selectedView === 'newAd' && isUploaded && <UploadedContainer />}
+            {selectedView === 'newAd' && !isUploaded && <UploadContainer setIsUploaded={setIsUploaded}/>}
 					</Content>
 				</Layout>
 			</Layout>
