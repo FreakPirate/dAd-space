@@ -1,17 +1,17 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import { useEffect } from 'react';
+import styled from 'styled-components';
 
-const ImageCard = props => {
-
-	const { imageUrl } = props;
-
-	if (!imageUrl) {
-		console.error('Image url is not present');
-	}
+const ImageCard = (props) => {
+	useEffect(() => {
+		document.getElementById('uploadedImage').src = document
+			.getElementById('dummyImage')
+			.getAttribute('src');
+	}, [props.isUploaded]);
 
 	return (
 		<Card>
-			<img src={imageUrl} />
+			<img id="uploadedImage" />
 		</Card>
 	);
 };
@@ -30,6 +30,5 @@ const Card = styled.div`
 		object-fit: contain;
 	}
 `;
-
 
 export default ImageCard;

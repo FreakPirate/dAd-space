@@ -5,23 +5,24 @@ import uploadSvg from './assets/upload.svg';
 import { InboxOutlined } from '@ant-design/icons';
 const { Dragger } = Upload;
 
-const UploadContainer = () => {
-	const props = {
+const UploadContainer = (props) => {
+	const prop = {
 		name: 'file',
-		multiple: true,
-		action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
 		onChange(info) {
-			const { status } = info.file;
-			if (status !== 'uploading') {
-				console.log(info.file, info.fileList);
-			}
-			if (status === 'done') {
-				message.success(
-					`${info.file.name} file uploaded successfully.`
-				);
-			} else if (status === 'error') {
-				message.error(`${info.file.name} file upload failed.`);
-			}
+
+			const reader = new FileReader();
+
+			reader.addEventListener(
+				'load',
+				() => {
+					document.getElementById('dummyImage').src = reader.result;
+                    props.setIsUploaded(true)
+				},
+				false
+			);
+
+			reader.readAsDataURL(info.file.originFileObj);
+
 		},
 		onDrop(e) {
 			console.log('Dropped files', e.dataTransfer.files);
@@ -33,10 +34,7 @@ const UploadContainer = () => {
 				<span>Get your Ad ready with in minutes.</span>
 				<img src={uploadSvg} width="300" height="300" />
 			</Description>
-			<ImageUploader {...props}>
-				{/* <p className="ant-upload-drag-icon">
-					<InboxOutlined />
-				</p> */}
+			<ImageUploader {...prop}>
 				<UploadText className="ant-upload-text">
 					Click or drag file to this area to upload
 				</UploadText>
@@ -60,25 +58,25 @@ const ImageUploader = styled(Dragger)`
 		justify-content: center;
 		& > .ant-upload {
 			width: 70%;
-            background-color: rgb(38 38 38/ 1);
-            border-radius: 1.5rem;
-            border-width: 4px;
-		}    
-        & > .ant-upload:hover {
-			border-color: #fff ;
-            background-color: rgb(64 64 64/1);
-            
-		}  
+			background-color: rgb(38 38 38/ 1);
+			border-radius: 1.5rem;
+			border-width: 4px;
+		}
+		& > .ant-upload:hover {
+			border-color: #fff;
+			background-color: rgb(64 64 64/1);
+		}
+        & > .ant-upload-list-text {
+            display:none;
+        }
+        
 	}
-
 `;
 
 const UploadText = styled.div`
-            color: #fff;
-            font-weight: 600 ;
-            font-size: large;
-            padding:80px;
-
-
+	color: #fff;
+	font-weight: 600;
+	font-size: large;
+	padding: 80px;
 `;
 export default UploadContainer;
