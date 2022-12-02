@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import { injected } from '../components/wallet/connectors'
+import { injected } from '../wallet/connectors'
 import { useWeb3React } from '@web3-react/core';
 
 export const MetaMaskContext = React.createContext(null)
