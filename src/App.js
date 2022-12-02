@@ -1,5 +1,7 @@
 import { Layout, Menu } from 'antd';
+import { useState } from 'react';
 import styled from 'styled-components';
+import UploadedContainer from './UploadedContainer';
 
 function App() {
 	const { Content, Sider } = Layout;
@@ -10,6 +12,14 @@ function App() {
 		{ label: 'New Ad', key: 'newAd' },
 	];
 
+	const [selectedView, setSelectedView] = useState('dashboard');
+
+	const [isUploaded, setIsUploaded] = useState(false);
+
+	const handleMenuItemSelect = ({ key }) => {
+		setSelectedView(key);
+	};
+	
 	return (
 		<StyledApp>
 			<Layout>
@@ -19,14 +29,16 @@ function App() {
 					</AppLogo>
 					<StyledMenu
 						theme='dark'
-						defaultSelectedKeys={['dashboard']}
+						defaultSelectedKeys={[selectedView]}
 						mode="inline"
 						items={items}
+						selectedKeys={[selectedView]}
+						onClick={handleMenuItemSelect}	
 					/>
 				</Sider>
 				<Layout>
 					<Content>
-						<div className="site-layout-background">CONTENT</div>
+						{selectedView === 'dashboard' && isUploaded && <UploadedContainer />}
 					</Content>
 				</Layout>
 			</Layout>
