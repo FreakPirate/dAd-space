@@ -11,7 +11,7 @@ const ImageCard = props => {
 
 	return (
 		<Card>
-
+			<img src={imageUrl} />
 		</Card>
 	);
 };
@@ -23,6 +23,12 @@ const Card = styled.div`
 	color: #ffffff;
 	margin: 20px;
 	background: aqua;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
 `;
 
 

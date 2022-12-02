@@ -12,7 +12,9 @@ function App() {
 		{ label: 'New Ad', key: 'newAd' },
 	];
 
-	const [selectedView, setSelectedView] = useState('upload');
+	const [selectedView, setSelectedView] = useState('dashboard');
+
+	const [isUploaded, setIsUploaded] = useState(false);
 
 	const handleMenuItemSelect = ({ key }) => {
 		setSelectedView(key);
@@ -27,7 +29,7 @@ function App() {
 					</AppLogo>
 					<StyledMenu
 						theme='dark'
-						defaultSelectedKeys={['dashboard']}
+						defaultSelectedKeys={[selectedView]}
 						mode="inline"
 						items={items}
 						selectedKeys={[selectedView]}
@@ -36,7 +38,7 @@ function App() {
 				</Sider>
 				<Layout>
 					<Content>
-						{selectedView === 'dashboard' && <UploadedContainer />}
+						{selectedView === 'dashboard' && isUploaded && <UploadedContainer />}
 					</Content>
 				</Layout>
 			</Layout>
