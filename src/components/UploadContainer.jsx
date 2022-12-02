@@ -1,7 +1,7 @@
 import { Image, message, Upload } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
-import uploadSvg from './assets/upload.svg';
+import uploadSvg from '../assets/upload.svg';
 import { InboxOutlined } from '@ant-design/icons';
 const { Dragger } = Upload;
 

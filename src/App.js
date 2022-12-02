@@ -1,8 +1,8 @@
 import { Layout, Menu } from 'antd';
 import { useState } from 'react';
 import styled from 'styled-components';
-import UploadContainer from './UploadContainer';
-import UploadedContainer from './UploadedContainer';
+import UploadContainer from './components/UploadContainer';
+import UploadedContainer from './components/UploadedContainer';
 
 function App() {
 	const { Content, Sider } = Layout;
