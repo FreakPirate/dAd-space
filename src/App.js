@@ -8,9 +8,9 @@ function App() {
 	const { Content, Sider } = Layout;
 
 	const items = [
-		{ label: 'Dashboard', key: 'dashboard' },
-		{ label: 'Past Ads', key: 'pastAds' },
 		{ label: 'New Ad', key: 'newAd' },
+		{ label: 'Past Ads', key: 'pastAds' },
+		{ label: 'Dashboard', key: 'dashboard' },
 	];
 
 	const [selectedView, setSelectedView] = useState('newAd');
@@ -38,9 +38,9 @@ function App() {
 					/>
 				</Sider>
 				<Layout>
-        <Content style={{overflow: 'initial', background: 'rgb(25, 25, 25)'}}>
+					<Content style={{overflow: 'initial', background: 'rgb(25, 25, 25)'}}>
 						{selectedView === 'newAd' && isUploaded && <UploadedContainer />}
-            {selectedView === 'newAd' && !isUploaded && <UploadContainer setIsUploaded={setIsUploaded}/>}
+						{selectedView === 'newAd' && !isUploaded && <UploadContainer setIsUploaded={setIsUploaded}/>}
 					</Content>
 				</Layout>
 			</Layout>
