@@ -13,9 +13,9 @@ function App() {
 	return (
 		<StyledApp>
 			<Layout>
-				<Sider style={{ width: 256, height: '100vh', background: '#171717'}}>
+				<Sider width={250} style={{ height: '100vh', background: '#171717', boxShadow: '0.2px 0px #8d9093' }}>
 					<AppLogo className="logo">
-						<Logo src="https://rocketium.com/images/v2/5ee1a13c9855283dbe2269f2/resized/bc3743b6-16b1-4d70-adc8-02c62caba2c6_1670010992259.png" alt="dAd Space" />
+						<Logo src="https://rocketium.com/images/v2/5ee1a13c9855283dbe2269f2/original/bc3743b6-16b1-4d70-adc8-02c62caba2c6_1670010992259.png" alt="dAd Space" />
 					</AppLogo>
 					<StyledMenu
 						theme='dark'
@@ -25,8 +25,8 @@ function App() {
 					/>
 				</Sider>
 				<Layout>
-					<Content>
-						<div className="site-layout-background">CONTENT</div>
+					<Content style={{overflow: 'initial', background: 'rgb(25, 25, 25)'}}>
+						<div className="site-layout-background"></div>
 					</Content>
 				</Layout>
 			</Layout>
@@ -51,17 +51,17 @@ const StyledMenu = styled(Menu)`
 `;
 
 const StyledApp = styled.div`
-	background-color: rgb(23 23 23/1);
 	height: 100vh;
 	width: 100vw;
 	color: #ffffff;
 `;
 const AppLogo = styled.div`
 	margin: 12px;
+	display: flex;
+	justify-content: center;
 `;
 const Logo = styled.img`
-	width: 100%;
-	height: 100%;
+	width: 90%;
 `;
 
 export default App;
