@@ -36,7 +36,7 @@ function App() {
 				</Sider>
 				<Layout>
 					<Content>
-						<div className="site-layout-background">CONTENT</div>
+						{selectedView === 'dashboard' && <UploadedContainer />}
 					</Content>
 				</Layout>
 			</Layout>
