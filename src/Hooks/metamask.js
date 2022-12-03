@@ -53,6 +53,12 @@ export const MetaMaskProvider = ({ children }) => {
         });
     }, [connect]);
 
+    const handleDisconnect = useCallback(() => {
+        disconnect().then(val => {
+            setIsActive(false);
+        });
+    }, [disconnect]);
+
     const values = useMemo(
         () => ({
             isActive,
@@ -63,17 +69,17 @@ export const MetaMaskProvider = ({ children }) => {
             shouldDisable
         }),
         [isActive, isLoading, shouldDisable, account]
-    )
+    );
 
-    return <MetaMaskContext.Provider value={values}>{isActive ? <App/> : <Login handleConnect={handleConnect}/>}</MetaMaskContext.Provider>
-}
+    return <MetaMaskContext.Provider value={values}>{isActive ? <App handleDisconnect={handleDisconnect} userDetails={account}/> : <Login handleConnect={handleConnect}/>}</MetaMaskContext.Provider>
+};
 
 export default function useMetaMask() {
-    const context = React.useContext(MetaMaskContext)
+    const context = React.useContext(MetaMaskContext);
 
     if (context === undefined) {
-        throw new Error('useMetaMask hook must be used with a MetaMaskProvider component')
+        throw new Error('useMetaMask hook must be used with a MetaMaskProvider component');
     }
 
-    return context
+    return context;
 }
