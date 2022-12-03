@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ImageCard from './ImageCard';
 import MetadataCheckboxContainer from './MetadataCheckboxContainer';
-import MetadataContainer from './MetadataContainer';
 import MetadataTextContainer from './MetadataTextContainer';
-import Navbar from './Navbar';
 import { useFormik } from 'formik';
 import { Button } from 'antd';
 
@@ -21,6 +19,7 @@ const UploadedContainer = (props) => {
 			frequent: false,
 			bulk: false,
 			spendLimit: '',
+			imageUrl: props.imageUrl || '',
 		},
 		enableReinitialize: true,
 		onSubmit: props.onSubmitHandler,
@@ -35,6 +34,7 @@ const UploadedContainer = (props) => {
 		bulk,
 		frequent,
 		spendLimit,
+		imageUrl,
 	} = formikForm.values;
 	
 	return (
@@ -60,6 +60,7 @@ const UploadedContainer = (props) => {
 					clickTag={clickTag}
 					spendLimit={spendLimit}
 					imageSize={imageSize}
+					imageUrl={imageUrl}
 				/>
 			</Container>
 			<MetadataCheckboxContainer

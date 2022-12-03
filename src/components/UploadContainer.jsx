@@ -22,6 +22,7 @@ const myBucket = new AWS.S3({
 
 const UploadContainer = (props) => {
 	const [progress , setProgress] = useState(0);
+	const { setImageUrl } = props;
 	const uploadFile = (file) => {
 		
 		const extensionRegex = /(?:\.([^.]+))?$/;
@@ -45,7 +46,7 @@ const UploadContainer = (props) => {
 				if (err) console.log('new errrrrrr', err)
 			});
 		const url = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${name}`;
-		console.log('URL', url);
+		setImageUrl(url);
 		
 	};
 
