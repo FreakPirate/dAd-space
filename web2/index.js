@@ -86,7 +86,8 @@ app.post('/analytics/capture', jsonParser, (req, res) => {
         clicks,
         ad_id,
         user_id,
-        dapp_id
+        dapp_id,
+        image_url,
     } = req.body;
     client.query(
         `INSERT INTO ad_analytics (publisher_id, ad_name, impressions, clicks, ad_id, user_id, dapp_id) VALUES ('${publisher_id}', '${ad_name}', ${impressions}, ${clicks}, '${ad_id}', '${user_id}', '${dapp_id}');`,
@@ -99,6 +100,10 @@ app.post('/analytics/capture', jsonParser, (req, res) => {
             }
         }
     );
+
+    const event = clicks > 0 ? 'click' : 'impression';
+    const { sendNotification } = require('./notification');
+    sendNotification(ad_id, image_url, ad_name, event);
 });
 
 app.listen(port, () => {
