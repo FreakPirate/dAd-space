@@ -39,7 +39,7 @@ const App = ({handleDisconnect, userDetails}) => {
 			case 'pastAds':
 				return <PastAdsList />;
 			case 'dashboard':
-				return <Dashboard/>;
+				return <Dashboard userDetails={userDetails}/>;
 		}
 	};
 	const onSubmitHandler = (updatedValues) => {
