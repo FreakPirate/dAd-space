@@ -2,57 +2,56 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { injected } from '../Wallet/connector'
 import { useWeb3React } from '@web3-react/core';
 import App from '../App';
-import Login from '../Login';
+import Login from '../components/Login';
 
-export const MetaMaskContext = React.createContext(null)
+export const MetaMaskContext = React.createContext(null);
 
 export const MetaMaskProvider = ({ children }) => {
 
-    const { activate, account, library, connector, active, deactivate } = useWeb3React()
+    const { activate, account, library, connector, active, deactivate } = useWeb3React();
     
-    const [isActive, setIsActive] = useState(false)
-    const [shouldDisable, setShouldDisable] = useState(false) // Should disable connect button while connecting to MetaMask
-    const [isLoading, setIsLoading] = useState(true)
-
-    // Init Loading
-    useEffect(() => {
-        connect().then(val => {
-            setIsLoading(false)
-        })
-    }, [])
+    const [isActive, setIsActive] = useState(false);
+    const [shouldDisable, setShouldDisable] = useState(false); // Should disable connect button while connecting to MetaMask
+    const [isLoading, setIsLoading] = useState(true);
 
     // Check when App is Connected or Disconnected to MetaMask
     const handleIsActive = useCallback(() => {
-        console.log('App is connected with MetaMask ', active)
-        setIsActive(active)
-    }, [active])
+        console.log('App is connected with MetaMask ', active);
+        setIsActive(active);
+    }, [active]);
 
     useEffect(() => {
-        handleIsActive()
-    }, [handleIsActive])
+        handleIsActive();
+    }, [handleIsActive]);
 
     // Connect to MetaMask wallet
     const connect = async () => {
-        console.log('Connecting to MetaMask...')
-        setShouldDisable(true)
+        console.log('Connecting to MetaMask...');
+        setShouldDisable(true);
         try {
             await activate(injected).then(() => {
-                setShouldDisable(false)
-            })
+                setShouldDisable(false);
+            });
         } catch(error) {
-            console.log('Error on connecting: ', error)
+            console.log('Error on connecting: ', error);
         }
-    }
+    };
 
     // Disconnect from Metamask wallet
     const disconnect = async () => {
-        console.log('Disconnecting wallet from App...')
+        console.log('Disconnecting wallet from App...');
         try {
-            await deactivate()
+            await deactivate();
         } catch(error) {
-            console.log('Error on disconnnect: ', error)
+            console.log('Error on disconnect: ', error);
         }
-    }
+    };
+
+    const handleConnect = useCallback(() => {
+        connect().then(val => {
+            setIsLoading(false);
+        });
+    }, [connect]);
 
     const values = useMemo(
         () => ({
@@ -66,7 +65,7 @@ export const MetaMaskProvider = ({ children }) => {
         [isActive, isLoading, shouldDisable, account]
     )
 
-    return <MetaMaskContext.Provider value={values}>{isActive ? <App/> : <Login/>}</MetaMaskContext.Provider>
+    return <MetaMaskContext.Provider value={values}>{isActive ? <App/> : <Login handleConnect={handleConnect}/>}</MetaMaskContext.Provider>
 }
 
 export default function useMetaMask() {
