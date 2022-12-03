@@ -1,19 +1,22 @@
+import React, { useState } from 'react';
 import { Tag, Layout, Menu, Tooltip } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
-import { useState } from 'react';
 import styled from 'styled-components';
 import { LOGO } from './constants';
 import UploadContainer from './components/UploadContainer';
 import UploadedContainer from './components/UploadedContainer';
 import PastAdsList from './components/PastAdsList';
 import Dashboard from './components/Dashboard';
+import Notifications from './components/Notifications';
 const { Content, Sider } = Layout;
 
 const App = ({handleDisconnect, userDetails}) => {
+
 	const items = [
 		{ label: 'New Ad', key: 'newAd' },
 		{ label: 'Past Ads', key: 'pastAds' },
 		{ label: 'Dashboard', key: 'dashboard' },
+		{ label: 'Notifications', key: 'notifications' },
 	];
 
 	const [selectedView, setSelectedView] = useState('newAd');
@@ -40,6 +43,8 @@ const App = ({handleDisconnect, userDetails}) => {
 				return <PastAdsList />;
 			case 'dashboard':
 				return <Dashboard/>;
+			case 'notifications':
+				return <Notifications userId={userDetails} />;
 		}
 	};
 	const onSubmitHandler = (updatedValues) => {
