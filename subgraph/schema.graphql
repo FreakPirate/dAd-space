@@ -1,0 +1,13 @@
+type Gravatar @entity {
+  id: ID!
+  adId: String!
+  spendLimit: BigInt!
+  imageUrl: String!
+  imagesize: String!
+  cta: String!
+  desc: String!
+  status: Boolean!
+  personid: [String!]!
+  clickTag: String!
+  publisherId: Bytes!
+}

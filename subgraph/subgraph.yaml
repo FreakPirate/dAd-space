@@ -1,0 +1,28 @@
+specVersion: 0.0.4
+description: Gravatar for Ethereum
+repository: https://github.com/graphprotocol/example-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Gravity
+    network: mumbai
+    source:
+      address: '0xeec303De83763f1Ed54c31609a9448fF1A8d45cb'
+      abi: Gravity
+      startBlock: 29468961
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Gravatar
+      abis:
+        - name: Gravity
+          file: ./abis/Gravity.json
+      eventHandlers:
+        - event: SubmitTransaction(string,uint256,string,string,string,string,bool,string[],string,address)
+          handler: handleNewTransaction
+        - event: SettleTransaction(string,bool)
+          handler: handleUpdatedGravatar
+      file: ./src/mapping.ts
