@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import UploadContainer from './components/UploadContainer';
 import UploadedContainer from './components/UploadedContainer';
+import PastAdsList from './components/PastAdsList';
 
 function App() {
 	const { Content, Sider } = Layout;
@@ -19,6 +20,17 @@ function App() {
 
 	const handleMenuItemSelect = ({ key }) => {
 		setSelectedView(key);
+	};
+
+	const getRightSideContent = (selectedView) => {
+		switch (selectedView) {
+			case 'newAd':
+				return !isUploaded ? <UploadContainer setIsUploaded={setIsUploaded} /> : <UploadedContainer />;
+			case 'pastAds':
+				return <PastAdsList />;
+			case 'dashboard':
+				return <h1>Dashboard</h1>;
+		}
 	};
 	
 	return (
@@ -38,9 +50,8 @@ function App() {
 					/>
 				</Sider>
 				<Layout>
-					<Content style={{overflow: 'initial', background: 'rgb(25, 25, 25)'}}>
-						{selectedView === 'newAd' && isUploaded && <UploadedContainer />}
-						{selectedView === 'newAd' && !isUploaded && <UploadContainer setIsUploaded={setIsUploaded}/>}
+					<Content style={{background: 'rgb(25, 25, 25)', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+						{getRightSideContent(selectedView)}
 					</Content>
 				</Layout>
 			</Layout>
