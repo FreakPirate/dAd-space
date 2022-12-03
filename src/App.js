@@ -1,6 +1,7 @@
 import { Layout, Menu } from 'antd';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { LOGO } from './constants';
 import UploadContainer from './components/UploadContainer';
 import UploadedContainer from './components/UploadedContainer';
 import PastAdsList from './components/PastAdsList';
@@ -25,20 +26,24 @@ function App() {
 	const getRightSideContent = (selectedView) => {
 		switch (selectedView) {
 			case 'newAd':
-				return !isUploaded ? <UploadContainer setIsUploaded={setIsUploaded} /> : <UploadedContainer />;
+				return !isUploaded ? <UploadContainer setIsUploaded={setIsUploaded} /> : <UploadedContainer setIsUploaded={setIsUploaded} onSubmitHandler={onSubmitHandler}/>;
 			case 'pastAds':
 				return <PastAdsList />;
 			case 'dashboard':
 				return <h1>Dashboard</h1>;
 		}
 	};
-	
+	const onSubmitHandler = (updatedValues) => {
+		console.log(updatedValues);
+		
+	}
+
 	return (
 		<StyledApp>
 			<Layout>
 				<Sider width={250} style={{ height: '100vh', background: '#171717', boxShadow: '0.2px 0px #8d9093' }}>
 					<AppLogo className="logo">
-						<Logo src="https://rocketium.com/images/v2/5ee1a13c9855283dbe2269f2/original/bc3743b6-16b1-4d70-adc8-02c62caba2c6_1670010992259.png" alt="dAd Space" />
+						<LogoWrapper src={LOGO} alt="dAd Space" />
 					</AppLogo>
 					<StyledMenu
 						theme='dark'
@@ -49,8 +54,8 @@ function App() {
 						onClick={handleMenuItemSelect}	
 					/>
 				</Sider>
-				<Layout>
-					<Content style={{background: 'rgb(25, 25, 25)', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+				<Layout style={{height: '100vh', background: 'rgb(25, 25, 25)'}}>
+					<Content style={{display: 'flex'}}>
 						{getRightSideContent(selectedView)}
 					</Content>
 				</Layout>
@@ -85,7 +90,7 @@ const AppLogo = styled.div`
 	display: flex;
 	justify-content: center;
 `;
-const Logo = styled.img`
+const LogoWrapper = styled.img`
 	width: 90%;
 `;
 

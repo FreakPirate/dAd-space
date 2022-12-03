@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import { Tooltip, Spin } from 'antd';
+import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
+import Card from './Card';
 
 const PastAdsList = (props) => {
 	const data = [
@@ -47,6 +48,18 @@ const PastAdsList = (props) => {
 			title: 'Ad 7',
 			description: 'This is the seventh ad',
 		},
+		{
+			id: 8,
+			url: 'https://images.unsplash.com/photo-1669733794267-0f09571b25df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+			title: 'Ad 7',
+			description: 'This is the seventh ad',
+		},
+		{
+			id: 9,
+			url: 'https://images.unsplash.com/photo-1669733794267-0f09571b25df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+			title: 'Ad 7',
+			description: 'This is the seventh ad',
+		},
 	];
 
 	const antIcon = (
@@ -62,13 +75,6 @@ const PastAdsList = (props) => {
 
 	const [pastAds, setPastAds] = useState(null);
 
-	const getDescription = (description) => {
-		if (description.length > 110) {
-			return description.substring(0, 105) + '...';
-		}
-		return description;
-	};
-
 	useEffect(() => {
 		const fetchAds = async (userId) => {
 			// const response = await fetch(`http://localhost:3001/ads/${userId}`);
@@ -82,17 +88,17 @@ const PastAdsList = (props) => {
 	});
 
 	return (
-		<ListWrapper>
-			{pastAds ? pastAds?.map(ad => {
+		pastAds ? <ListWrapper>
+			{pastAds?.map(ad => {
 				return <Card
-						key={ad.id}
+						id={ad.id}
+						url={ad.url}
+						title={ad.title}
+						description={ad.description}
 					>
-						<CardImageWrapper><CardImage src={ad.url} /></CardImageWrapper>
-						<CardTitle>{ad.title}</CardTitle>
-						<Tooltip title={ad.description} placement='topLeft'><CardDescription>{getDescription(ad.description)}</CardDescription></Tooltip>
-				</Card>
-			}) : <Spin size='large' indicator={antIcon}/>}
-		</ListWrapper>
+				</Card>;
+			})}
+		</ListWrapper> : <SpinWrapper><Spin size='large' indicator={antIcon}/></SpinWrapper>
 	);
 };
 
@@ -101,36 +107,19 @@ export default PastAdsList;
 const ListWrapper = styled.div`
 	display: flex;
 	margin: 24px;
-	align-content: space-between;
+	align-content: baseline;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
+	overflow: scroll;
 `;
 
-const Card = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	width: 330px;
-	margin: 18px;
-	height: 330px;
-`;
-
-const CardImageWrapper = styled.div`
-	width: 100%;
-	height: 60%;
-	max-height: 198px;
-`;
-
-const CardImage = styled.img`
-	width: 100%;
+const SpinWrapper = styled.div`
 	height: 100%;
-`;
-
-const CardTitle = styled.div`
-	font-size: 20px;
-`;
-
-const CardDescription = styled.div`
-	font-size: 14px;
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
 `;
