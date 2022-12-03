@@ -50,7 +50,7 @@ function App() {
 					/>
 				</Sider>
 				<Layout style={{height: '100vh', background: 'rgb(25, 25, 25)'}}>
-					<Content style={{display: 'flex', overflow: 'scroll'}}>
+					<Content style={{display: 'flex'}}>
 						{getRightSideContent(selectedView)}
 					</Content>
 				</Layout>
