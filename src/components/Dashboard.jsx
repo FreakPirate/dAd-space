@@ -4,26 +4,29 @@ import CardView from './AnalyticsViews/CardView';
 import Linechart from './AnalyticsViews/Linechart';
 import PieChart from './AnalyticsViews/PieChart';
 
-const Dashboard = () => {
+const views = ['CTR', 'Clicks', 'Impressions'];
+
+const Dashboard = (props) => {
+	const { userDetails } = props;
+
 	return (
 		<Container>
 			<Title>Analytics</Title>
 			<CardContainer>
-				<CardView name={'CTR'} value="0.57%" />
-				<CardView name={'Clicks'} value="1.3M" />
-				<CardView name={'Impressions'} value="2.5B" />
-				<CardView name={'Published Ads'} value="12" />
+				{[...views, 'Published Ads'].map((view, i) => (
+					<CardView name={view} userId={userDetails} />
+				))}
 			</CardContainer>
-            <LineContainer>
-                <Linechart/>
-                <Linechart/>
-                <Linechart/>
-            </LineContainer>
-            <PieContainer>
-                <PieChart/>
-                <PieChart/>
-                <PieChart/>
-            </PieContainer>
+			<LineContainer>
+				{views.map((view, i) => (
+					<Linechart name={view} userId={userDetails} />
+				))}
+			</LineContainer>
+			<PieContainer>
+				{views.map((view, i) => (
+					<PieChart name={view} userId={userDetails} />
+				))}
+			</PieContainer>
 		</Container>
 	);
 };
@@ -47,15 +50,15 @@ const CardContainer = styled.div`
 const LineContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-    justify-content:space-between;
-    width:100%;
-    margin-top:25px;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 25px;
 `;
 
 const PieContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-    justify-content:space-between;
-    width:100%;
+	justify-content: space-between;
+	width: 100%;
 `;
 export default Dashboard;
