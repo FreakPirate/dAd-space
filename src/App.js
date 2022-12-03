@@ -42,7 +42,7 @@ const App = ({handleDisconnect, userDetails}) => {
 			case 'pastAds':
 				return <PastAdsList />;
 			case 'dashboard':
-				return <Dashboard/>;
+				return <Dashboard userDetails={userDetails}/>;
 			case 'notifications':
 				return <Notifications userId={userDetails} />;
 		}

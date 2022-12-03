@@ -107,6 +107,8 @@ const PublishButton = styled(Button)`
 	font-size: 18px;
 	background-color: #f63859;
 	border: none;
+	display: flex;
+    align-items: center;
 	&.ant-btn {
 		height: 40px;
 	}
@@ -119,6 +121,8 @@ const PublishButton = styled(Button)`
 const DiscardButton = styled(Button)`
 	font-size: 18px;
 	background-color: transparent;
+	display: flex;
+    align-items: center;
 	&.ant-btn {
 		height: 40px;
 	}

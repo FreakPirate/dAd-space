@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Tag } from 'antd';
 
 const CardView = (props) => {
+	const [value, setValue] = useState(0);
+	useEffect(() => {
+		asyncFetch();
+	}, []);
+
+	const asyncFetch = () => {
+		fetch(`/analytics/${props.userId}/sum/${props.name.toLowerCase()}`)
+			.then((res) => res.json())
+			.then((json) => {
+				setValue(json.sum);
+			});
+	};
 	return (
 		<CardContainer>
 			<TitleContainer>
 				<Pill>Sum</Pill>
 				<StyledTitle>{props.name}</StyledTitle>
 			</TitleContainer>
-			<FieldValue>{props.value}</FieldValue>
+			<FieldValue>{value}</FieldValue>
 		</CardContainer>
 	);
 };
@@ -39,7 +51,7 @@ const CardContainer = styled.div`
 	height: 150px;
 	width: 295px;
 	background: #27272a;
-    margin: 10px 15px ;
+	margin: 10px 15px;
 `;
 
 const FieldValue = styled.div`
@@ -58,8 +70,8 @@ const StyledTitle = styled.div`
 const TitleContainer = styled.div`
 	display: flex;
 	align-items: center;
-    padding: 0px 15px ;
-    width: 100%;
+	padding: 0px 15px;
+	width: 100%;
 `;
 
 export default CardView;
