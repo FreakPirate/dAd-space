@@ -1,28 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const MetadataTextContainer = () => {
+const MetadataTextContainer = (props) => {
     return (
         <TextContainer>
 				<TextBox>
 					<span>CTA text</span>
-					<input></input>
+					<input value={props.ctaText} name='ctaText' onChange={props.onChange}></input>
 				</TextBox>
 				<TextBox>
 					<span>CTA description</span>
-					<input></input>
+					<input value={props.ctaDescription} name='ctaDescription' onChange={props.onChange}></input>
 				</TextBox>
 				<TextBox>
 					<span>Clicktag</span>
-					<input></input>
+					<input value={props.clickTag} name='clickTag' onChange={props.onChange}></input>
 				</TextBox>
 				<TextBox>
 					<span>Spend Limit</span>
-					<input></input>
+					<input value={props.spendLimit} name='spendLimit' onChange={props.onChange}></input>
 				</TextBox>
 				<TextBox>
 					<span>Image Size</span>
-					<input></input>
+					<input value={props.imageSize} name='imageSize' onChange={props.onChange}></input>
 				</TextBox>
 			</TextContainer>
     );
