@@ -47,6 +47,18 @@ const PastAdsList = (props) => {
 			title: 'Ad 7',
 			description: 'This is the seventh ad',
 		},
+		{
+			id: 8,
+			url: 'https://images.unsplash.com/photo-1669733794267-0f09571b25df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+			title: 'Ad 7',
+			description: 'This is the seventh ad',
+		},
+		{
+			id: 9,
+			url: 'https://images.unsplash.com/photo-1669733794267-0f09571b25df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+			title: 'Ad 7',
+			description: 'This is the seventh ad',
+		},
 	];
 
 	const antIcon = (
@@ -111,10 +123,11 @@ const SpinWrapper = styled.div`
 const ListWrapper = styled.div`
 	display: flex;
 	margin: 24px;
-	align-content: space-between;
+	align-content: baseline;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: flex-start;
+	overflow: scroll;
 `;
 
 const Card = styled.div`
@@ -122,8 +135,11 @@ const Card = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	width: 330px;
-	margin: 18px;
+	margin: 18px 18px 0px 18px;
 	height: 330px;
+	background-color: #27272A;
+	border-radius: 1rem;
+	cursor: pointer;
 `;
 
 const CardImageWrapper = styled.div`
@@ -135,12 +151,16 @@ const CardImageWrapper = styled.div`
 const CardImage = styled.img`
 	width: 100%;
 	height: 100%;
+	border-radius: 1rem;
 `;
 
 const CardTitle = styled.div`
 	font-size: 20px;
+	margin: -10px 12px 0px 12px;
 `;
 
 const CardDescription = styled.div`
 	font-size: 14px;
+	margin: 12px;
+	height: 15%;
 `;
