@@ -12,9 +12,9 @@ function getAdds() {
             var squareResult = resp.square;
 
 
-            document.getElementById("dad-horizontal-add").innerHTML = <img src={horizontalResult.url} onclick={registerClick(horizontalResult.id)}></img>;
-            document.getElementById("dad-vertical-add").innerHTML = <img src={verticalResult.url} onclick={registerClick(verticalResult.id)}></img>;
-            document.getElementById("dad-square-add").innerHTML = <img src={squareResult.url} onclick={registerClick(squareResult.id)}></img>;
+            document.getElementById("dad-horizontal-add").innerHTML = `<img src={${horizontalResult.url}} onclick={registerClick(${horizontalResult.id})}></img>`;
+            document.getElementById("dad-vertical-add").innerHTML = `<img src={${verticalResult.url}} onclick={registerClick(${verticalResult.id})}></img>`;
+            document.getElementById("dad-square-add").innerHTML = `<img src={${squareResult.url}} onclick={registerClick(${squareResult.id})}></img>`;
         }
     }
 }

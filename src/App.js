@@ -34,14 +34,18 @@ const App = ({handleDisconnect, userDetails}) => {
 	const getRightSideContent = (selectedView) => {
 		switch (selectedView) {
 			case 'newAd':
-				return !isUploaded ? <UploadContainer setIsUploaded={setIsUploaded} /> : <UploadedContainer setIsUploaded={setIsUploaded} />;
+				return !isUploaded ? <UploadContainer setIsUploaded={setIsUploaded} /> : <UploadedContainer setIsUploaded={setIsUploaded} onSubmitHandler={onSubmitHandler}/>;
 			case 'pastAds':
 				return <PastAdsList />;
 			case 'dashboard':
 				return <h1>Dashboard</h1>;
 		}
 	};
-	
+	const onSubmitHandler = (updatedValues) => {
+		console.log(updatedValues);
+		
+	}
+
 	return (
 		<StyledApp>
 			<Layout>

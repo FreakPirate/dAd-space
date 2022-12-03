@@ -22,7 +22,7 @@ const Card = styled.div`
 	color: #ffffff;
 	background: transparent;
 	img {
-		width: 600px;
+		width: 650px;
 	height: 500px;
 	margin: 50px;
 		object-fit: contain;
