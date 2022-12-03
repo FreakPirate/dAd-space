@@ -49,9 +49,9 @@ const CardContainer = styled.div`
 	justify-content: space-evenly;
 	border-radius: 15px;
 	height: 150px;
-	width: 295px;
+	width: 25%;
 	background: #27272a;
-	margin: 10px 15px;
+	margin: 8px 8px;
 `;
 
 const FieldValue = styled.div`
