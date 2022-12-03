@@ -49,8 +49,8 @@ function App() {
 						onClick={handleMenuItemSelect}	
 					/>
 				</Sider>
-				<Layout>
-					<Content style={{background: 'rgb(25, 25, 25)', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+				<Layout style={{height: '100vh', background: 'rgb(25, 25, 25)'}}>
+					<Content style={{display: 'flex'}}>
 						{getRightSideContent(selectedView)}
 					</Content>
 				</Layout>
