@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 var bodyParser = require('body-parser');
 const { Client } = require('pg');
+var cors = require('cors')
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -19,6 +20,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Express + TypeScript Server');
