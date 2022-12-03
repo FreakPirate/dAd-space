@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 var bodyParser = require('body-parser');
 const { Client } = require('pg');
+var cors = require('cors')
 
 // create application/json parser
 var jsonParser = bodyParser.json();
@@ -19,6 +20,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Express + TypeScript Server');
@@ -86,7 +88,8 @@ app.post('/analytics/capture', jsonParser, (req, res) => {
         clicks,
         ad_id,
         user_id,
-        dapp_id
+        dapp_id,
+        image_url,
     } = req.body;
     client.query(
         `INSERT INTO ad_analytics (publisher_id, ad_name, impressions, clicks, ad_id, user_id, dapp_id) VALUES ('${publisher_id}', '${ad_name}', ${impressions}, ${clicks}, '${ad_id}', '${user_id}', '${dapp_id}');`,
@@ -99,6 +102,10 @@ app.post('/analytics/capture', jsonParser, (req, res) => {
             }
         }
     );
+
+    const event = clicks > 0 ? 'click' : 'impression';
+    const { sendNotification } = require('./notification');
+    sendNotification(ad_id, image_url, ad_name, event);
 });
 
 app.listen(port, () => {
