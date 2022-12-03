@@ -87,8 +87,7 @@ const Header = styled.div`
 	justify-content: end;
 	flex-direction: column;
 	align-items: flex-end;
-	height: 11%;
-	padding: 0px 93px;
+	height: 10%;
 `;
 
 const Container = styled.div`
@@ -105,31 +104,32 @@ const NavbarHeader = styled.div`
 `;
 
 const PublishButton = styled(Button)`
-	font-size: 25px;
+	font-size: 18px;
 	background-color: #f63859;
+	border: none;
 	display: flex;
     align-items: center;
 	&.ant-btn {
-		height: 50px;
+		height: 40px;
 	}
 	& > span {
 		color: #fff;
 		font-weight: 600;
-		font-size: 19px;
+		font-size: 16px;
 	}
 `;
 const DiscardButton = styled(Button)`
-	font-size: 25px;
+	font-size: 18px;
 	background-color: transparent;
 	display: flex;
     align-items: center;
 	&.ant-btn {
-		height: 50px;
+		height: 40px;
 	}
 	& > span {
 		color: #fff;
 		font-weight: 600;
-		font-size: 19px;
+		font-size: 16px;
 	}
 `;
 export default UploadedContainer;
