@@ -26,3 +26,7 @@ function registerClick(id) {
     xhr.open("POST", url, true);
     xhr.send();
 }
+    
+function testCall() {
+    alert('yes you did it');
+}
