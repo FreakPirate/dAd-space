@@ -25,7 +25,7 @@ function App() {
 	const getRightSideContent = (selectedView) => {
 		switch (selectedView) {
 			case 'newAd':
-				return !isUploaded ? <UploadContainer setIsUploaded={setIsUploaded} /> : <UploadedContainer />;
+				return !isUploaded ? <UploadContainer setIsUploaded={setIsUploaded} /> : <UploadedContainer setIsUploaded={setIsUploaded} />;
 			case 'pastAds':
 				return <PastAdsList />;
 			case 'dashboard':
