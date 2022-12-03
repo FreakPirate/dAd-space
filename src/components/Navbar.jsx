@@ -5,7 +5,7 @@ import { Button } from 'antd';
 const Navbar = (props) => {
 	return (
 		<NavbarHeader>
-			<PublishButton>Publish</PublishButton>
+			<PublishButton onClick={() => props.onPublish()}>Publish</PublishButton>
 			<DiscardButton onClick={() => props.setIsUploaded(false)}>Discard</DiscardButton>
 		</NavbarHeader>
 	);

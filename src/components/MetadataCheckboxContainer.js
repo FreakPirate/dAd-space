@@ -2,15 +2,15 @@ import { Checkbox } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 
-const MetadataCheckboxContainer = () => {
+const MetadataCheckboxContainer = (props) => {
 	return (
 		<PersonaContainer>
             <span>Choose user persona:</span>
 			<CheckboxContainer>
-				<StyledCheckbox onChange={null}>Luxury Buyers</StyledCheckbox>
-				<StyledCheckbox onChange={null}>Frequent Buyers</StyledCheckbox>
-				<StyledCheckbox onChange={null}>Bulk Buyers</StyledCheckbox>
-				<StyledCheckbox onChange={null}>Thrift Buyers</StyledCheckbox>
+				<StyledCheckbox onChange={(e) => props.onChangeFormik('luxury', e.target.checked)}>Luxury Buyers</StyledCheckbox>
+				<StyledCheckbox onChange={(e) => props.onChangeFormik('frequent', e.target.checked)}>Frequent Buyers</StyledCheckbox>
+				<StyledCheckbox onChange={(e) => props.onChangeFormik('bulk', e.target.checked)}>Bulk Buyers</StyledCheckbox>
+				<StyledCheckbox onChange={(e) => props.onChangeFormik('thrift', e.target.checked)}>Thrift Buyers</StyledCheckbox>
 			</CheckboxContainer>
 		</PersonaContainer>
 	);
