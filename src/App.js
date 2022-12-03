@@ -2,12 +2,13 @@ import { Tag, Layout, Menu, Tooltip } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { LOGO } from './constants';
+import { ABI, LOGO, smartContractAddress } from './constants';
 import UploadContainer from './components/UploadContainer';
 import UploadedContainer from './components/UploadedContainer';
 import PastAdsList from './components/PastAdsList';
 import Dashboard from './components/Dashboard';
 const { Content, Sider } = Layout;
+import { ethers } from 'ethers';
 
 const App = ({handleDisconnect, userDetails}) => {
 	const items = [
@@ -32,19 +33,53 @@ const App = ({handleDisconnect, userDetails}) => {
 		return `${userId?.substring(0, 4)}....${userId?.substring(userId?.length - 4)}`;
 	};
 
+	const [imageUrl , setImageUrl] = useState(null);
+
 	const getRightSideContent = (selectedView) => {
 		switch (selectedView) {
 			case 'newAd':
-				return !isUploaded ? <UploadContainer setIsUploaded={setIsUploaded} /> : <UploadedContainer setIsUploaded={setIsUploaded} onSubmitHandler={onSubmitHandler}/>;
+				return !isUploaded ? <UploadContainer setImageUrl={setImageUrl} setIsUploaded={setIsUploaded} /> : <UploadedContainer imageUrl={imageUrl} setIsUploaded={setIsUploaded} onSubmitHandler={onSubmitHandler}/>;
 			case 'pastAds':
 				return <PastAdsList />;
 			case 'dashboard':
 				return <Dashboard userDetails={userDetails}/>;
 		}
 	};
+
+	const handleTransaction = async (data) => {
+		try {
+			const { ethereum } = window;
+			if (ethereum) {
+				const { ctaText, ctaDescription, clickTag, imageSize, luxury, thrift, bulk, frequent, spendLimit, imageUrl } = data;
+				const provider = new ethers.providers.Web3Provider(ethereum);
+
+				const signer = provider.getSigner();
+				const nftContract = new ethers.Contract(smartContractAddress, ABI, signer);
+
+				const adId = `${Date.now()}`;
+
+				const personas = [luxury ? 'luxury' : '', thrift ? 'thrift' : '', bulk ? 'bulk' : '', frequent ? 'frequent' : ''].filter(e => e);
+				const signerAddress = await signer.getAddress();
+
+				const a = {adId, spendLimit, imageUrl, imageSize, ctaText, ctaDescription, personas, clickTag, signerAddress};
+				console.log(a);
+				const nftTxn = await nftContract.submitTransaction(adId, spendLimit, imageUrl, imageSize, ctaText, ctaDescription, personas, clickTag, signerAddress);
+
+				await nftTxn.wait();
+
+				console.log('Transaction successful', nftTxn.hash);
+
+			} else {
+				console.log('Ethereum object not found');
+			}
+		}
+		catch (error) {
+			console.log('Error: ', error);
+		}
+	};
+
 	const onSubmitHandler = (updatedValues) => {
-		console.log(updatedValues);
-		
+		handleTransaction(updatedValues);
 	}
 
 	return (
