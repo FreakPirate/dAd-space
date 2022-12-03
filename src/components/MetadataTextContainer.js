@@ -33,7 +33,7 @@ const TextBox = styled.div`
 	& > input {
 		background-color: transparent;
 		color: #ffffff;
-		border: 1px solid #ffffff;
+		border: 0.5px solid #ffffff;
 		font-size: 24px;
 		border-radius: 4px;
 		padding: 10px;

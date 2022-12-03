@@ -40,9 +40,9 @@ const Linechart = (props) => {
 
 const StyledLineChart = styled(Line)`
 	&& {
-		width: 400px;
+		width: 365px;
 		height: 200px !important;
-		margin: 0px 10px;
+		margin: 0px 8px;
 		background: #27272a;
 		padding: 20px 10px;
 		border-radius: 0px 0px 13px 13px;
@@ -63,7 +63,7 @@ const StyledTitle = styled.div`
 	text-overflow: ellipsis;
 	padding: 20px 0px 5px 15px;
 	background: #27272a;
-	width: 95.3%;
+	width: 365px;
 	border-radius: 13px 13px 0px 0px;
 `;
 

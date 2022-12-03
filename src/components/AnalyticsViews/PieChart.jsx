@@ -55,9 +55,10 @@ const PieChart = (props) => {
 const StyledPieChart = styled(Pie)`
 	&& {
 		height: 240px !important;
+		width: 365px;
 		background: #27272a;
 		border-radius: 0px 0px 15px 15px;
-		margin: 0px 10px 0px 10px;
+		margin: 0px 8px;
 	}
 `;
 const Container = styled.span`
@@ -66,7 +67,7 @@ const Container = styled.span`
 		align-items: center;
 		flex-direction: column;
 		border-radius: 15px;
-		margin-top: 25px;
+		margin-top: 20px;
 	}
 `;
 const StyledTitle = styled.div`
@@ -76,7 +77,7 @@ const StyledTitle = styled.div`
 	text-overflow: ellipsis;
 	padding: 20px 0px 5px 15px;
 	background: #27272a;
-	width: 95.3%;
+	width: 365px;
 	border-radius: 13px 13px 0px 0px;
 `;
 
