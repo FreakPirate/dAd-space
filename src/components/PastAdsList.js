@@ -82,8 +82,8 @@ const PastAdsList = (props) => {
 	});
 
 	return (
-		<ListWrapper>
-			{pastAds ? pastAds?.map(ad => {
+		pastAds ? <ListWrapper>
+			{pastAds?.map(ad => {
 				return <Card
 						key={ad.id}
 					>
@@ -91,12 +91,22 @@ const PastAdsList = (props) => {
 						<CardTitle>{ad.title}</CardTitle>
 						<Tooltip title={ad.description} placement='topLeft'><CardDescription>{getDescription(ad.description)}</CardDescription></Tooltip>
 				</Card>
-			}) : <Spin size='large' indicator={antIcon}/>}
-		</ListWrapper>
+			})}
+		</ListWrapper> : <SpinWrapper><Spin size='large' indicator={antIcon}/></SpinWrapper>
 	);
 };
 
 export default PastAdsList;
+
+const SpinWrapper = styled.div`
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+`;
 
 const ListWrapper = styled.div`
 	display: flex;
