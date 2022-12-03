@@ -18,16 +18,16 @@ const ImageCard = (props) => {
 
 const Card = styled.div`
 	display: flex;
-	width: 430px;
-	height: 550px;
+	
 	color: #ffffff;
-	margin: 20px;
-	background: aqua;
-
+	background: transparent;
 	img {
-		width: 100%;
-		height: 100%;
+		width: 650px;
+	height: 500px;
+	margin: 50px;
 		object-fit: contain;
+		border-radius: 25px;
+
 	}
 `;
 
