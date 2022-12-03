@@ -39,7 +39,7 @@ function App() {
 				</Sider>
 				<Layout>
 					<Content style={{overflow: 'initial', background: 'rgb(25, 25, 25)'}}>
-						{selectedView === 'newAd' && isUploaded && <UploadedContainer />}
+						{selectedView === 'newAd' && isUploaded && <UploadedContainer setIsUploaded={setIsUploaded}/>}
 						{selectedView === 'newAd' && !isUploaded && <UploadContainer setIsUploaded={setIsUploaded}/>}
 					</Content>
 				</Layout>
