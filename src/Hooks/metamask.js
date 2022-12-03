@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { injected } from '../Wallet/connector'
 import { useWeb3React } from '@web3-react/core';
+import App from '../App';
+import Login from '../Login';
 
 export const MetaMaskContext = React.createContext(null)
 
@@ -64,7 +66,7 @@ export const MetaMaskProvider = ({ children }) => {
         [isActive, isLoading, shouldDisable, account]
     )
 
-    return <MetaMaskContext.Provider value={values}>{children}</MetaMaskContext.Provider>
+    return <MetaMaskContext.Provider value={values}>{isActive ? <App/> : <Login/>}</MetaMaskContext.Provider>
 }
 
 export default function useMetaMask() {
