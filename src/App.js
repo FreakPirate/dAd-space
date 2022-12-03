@@ -6,6 +6,7 @@ import { LOGO } from './constants';
 import UploadContainer from './components/UploadContainer';
 import UploadedContainer from './components/UploadedContainer';
 import PastAdsList from './components/PastAdsList';
+import Dashboard from './components/Dashboard';
 const { Content, Sider } = Layout;
 
 const App = ({handleDisconnect, userDetails}) => {
@@ -38,7 +39,7 @@ const App = ({handleDisconnect, userDetails}) => {
 			case 'pastAds':
 				return <PastAdsList />;
 			case 'dashboard':
-				return <h1>Dashboard</h1>;
+				return <Dashboard/>;
 		}
 	};
 	const onSubmitHandler = (updatedValues) => {
