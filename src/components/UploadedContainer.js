@@ -107,6 +107,8 @@ const NavbarHeader = styled.div`
 const PublishButton = styled(Button)`
 	font-size: 25px;
 	background-color: #f63859;
+	display: flex;
+    align-items: center;
 	&.ant-btn {
 		height: 50px;
 	}
@@ -119,6 +121,8 @@ const PublishButton = styled(Button)`
 const DiscardButton = styled(Button)`
 	font-size: 25px;
 	background-color: transparent;
+	display: flex;
+    align-items: center;
 	&.ant-btn {
 		height: 50px;
 	}
