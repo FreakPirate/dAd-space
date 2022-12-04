@@ -22,6 +22,7 @@ function App(props) {
       </header>
       <div className="mainBody">
         <div id="dad-vertical-add">
+          <img src='https://dad-space.s3.ap-south-1.amazonaws.com/Variant-1_800x16001670084659339.png'></img>
 
         </div>
         <div style={{"displaye": "flex"}}>
@@ -31,6 +32,7 @@ function App(props) {
           </p>
         </div>
         <div id="dad-vertical-add">
+          <img src="https://dad-space.s3.ap-south-1.amazonaws.com/Variant-1-copy-1_800x16001670084686480.png"></img>
         </div>
       </div>
     </div>
