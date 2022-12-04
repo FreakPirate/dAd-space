@@ -37,6 +37,9 @@ Our concept requires a lot of data, thus every time a user connects, we must fet
 ![Past ads](https://devfolio.co/_next/image?url=https%3A%2F%2Fassets.devfolio.co%2Fhackathons%2F477fc44df3b94017b8b4bef44fca3cd7%2Fprojects%2Fb42985027e9942e39c8b86f10524ad93%2F8294299a-6908-4d26-8925-aeef16722572.png&w=1440&q=75](https://rocketium.com/images/v2/609213e3d560562f9508621f/resized/50e1110b-080d-456e-9b82-182147da6b26_1670123996313.webp))
 
 ![Notifications](https://rocketium.com/images/v2/609213e3d560562f9508621f/resized/74ea77f1-c196-4a2f-bf40-6fef13dd09e5_1670124515716.png)
+![Analytics](https://rocketium.com/images/v2/609213e3d560562f9508621f/resized/37dc7016-cd3d-45eb-b0b1-7a91c2f24b0f_1670124715380.png)
+
+#### Check out the demo here: https://youtu.be/t8YI9zH5we8
 ## Authors
 
 - [@freakpirate](https://www.github.com/FreakPirate)
