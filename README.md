@@ -19,6 +19,7 @@ Decentralized Ad Network is here to ensure that these major businesses don’t a
 
 ### Polygon:
 As our whole app is data heavy and each ad that gets published, we have to create a transaction. So our ad-related smart contract is deployed on polygon and all ad-related transactions will be via polygon.
+#### Smart contract : https://mumbai.polygonscan.com/address/0xe0deF8B610b462668d131bfAaa52aB7eab89A5d3
 
 ### Dune:
 
