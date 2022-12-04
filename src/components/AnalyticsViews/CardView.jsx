@@ -9,7 +9,7 @@ const CardView = (props) => {
 	}, []);
 
 	const asyncFetch = () => {
-		fetch(`/analytics/${props.userId}/sum/${props.name.toLowerCase()}`)
+		fetch(`http://35.154.128.152:3000/analytics/${props.userId}/sum/${props.name.toLowerCase()}`)
 			.then((res) => res.json())
 			.then((json) => {
 				setValue(json.sum);

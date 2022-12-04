@@ -12,7 +12,7 @@ const PieChart = (props) => {
 
 	const asyncFetch = () => {
 		fetch(
-			`/analytics/${
+			`http://35.154.128.152:3000/analytics/${
 				props.userId
 			}/distribution/${props.name.toLowerCase()}`
 		)

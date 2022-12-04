@@ -73,6 +73,9 @@ const App = ({handleDisconnect, userDetails}) => {
 				await nftTxn.wait();
 
 				console.log('Transaction successful', nftTxn.hash);
+				const pastAds = JSON.parse(localStorage.getItem('pastAds') || '[]');
+				console.log('past ADS', pastAds);
+				localStorage.setItem('pastAds', JSON.stringify([adId, ...pastAds]));
 
 			} else {
 				console.log('Ethereum object not found');

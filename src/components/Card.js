@@ -6,7 +6,7 @@ const Card = (props) => {
 	const { id, url, title, description } = props;
 
 	const getDescription = (description) => {
-		if (description.length > 110) {
+		if (description?.length > 110) {
 			return description.substring(0, 105) + '...';
 		}
 		return description;
