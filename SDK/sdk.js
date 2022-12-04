@@ -73,13 +73,13 @@ function getUserPersonaAndFillAds() {
     }
 
     // Call API to get ad data for user persona
-    fetch('https://reqbin.com/echo/post/json', { // to be changed
+    fetch('https://api.thegraph.com/subgraphs/name/freakpirate/transaction4', { // to be changed
     method: 'POST',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ userPersona})
+    body: JSON.stringify({userPersona})
     })
     .then(response => {
         // display ads
