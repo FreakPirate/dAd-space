@@ -34,7 +34,7 @@ Our concept requires a lot of data, thus every time a user connects, we must fet
 
 ![Landing](https://devfolio.co/_next/image?url=https%3A%2F%2Fassets.devfolio.co%2Fhackathons%2F477fc44df3b94017b8b4bef44fca3cd7%2Fprojects%2Fb42985027e9942e39c8b86f10524ad93%2Fcf1cd0b7-35bf-42b8-a288-1d6d7b5abd2b.png&w=1440&q=75)
 
-![Landing](https://devfolio.co/_next/image?url=https%3A%2F%2Fassets.devfolio.co%2Fhackathons%2F477fc44df3b94017b8b4bef44fca3cd7%2Fprojects%2Fb42985027e9942e39c8b86f10524ad93%2F8294299a-6908-4d26-8925-aeef16722572.png&w=1440&q=75)
+![Past ads](https://devfolio.co/_next/image?url=https%3A%2F%2Fassets.devfolio.co%2Fhackathons%2F477fc44df3b94017b8b4bef44fca3cd7%2Fprojects%2Fb42985027e9942e39c8b86f10524ad93%2F8294299a-6908-4d26-8925-aeef16722572.png&w=1440&q=75](https://rocketium.com/images/v2/609213e3d560562f9508621f/resized/50e1110b-080d-456e-9b82-182147da6b26_1670123996313.webp))
 
 ## Authors
 
