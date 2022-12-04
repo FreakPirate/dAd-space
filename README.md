@@ -12,7 +12,7 @@ Decentralized Ad Network is here to ensure that these major businesses don’t a
 
 **Client:** React, AntD
 
-**Server:** Express, Node, PostgreSQL
+**Server:** Express, Node, PostgreSQL, Solidity, Push, Polygon, Dune, The Graph
 
 
 ## Usage
