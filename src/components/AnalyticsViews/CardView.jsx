@@ -5,16 +5,27 @@ import { Tag } from 'antd';
 const CardView = (props) => {
 	const [value, setValue] = useState(0);
 	useEffect(() => {
-		asyncFetch();
+		if (props.name !== 'Published Ads') {
+			asyncFetch();
+		} else {
+			setValue(
+				JSON.parse(localStorage.getItem('pastAds') || '[]').length
+			);
+		}
 	}, []);
 
 	const asyncFetch = () => {
-		fetch(`http://35.154.128.152:3000/analytics/${props.userId}/sum/${props.name.toLowerCase()}`)
+		fetch(
+			`http://35.154.128.152:3000/analytics/${
+				props.userId
+			}/sum/${props.name.toLowerCase()}`
+		)
 			.then((res) => res.json())
 			.then((json) => {
-				setValue(json.sum);
+				setValue(json.sum || 0);
 			});
 	};
+
 	return (
 		<CardContainer>
 			<TitleContainer>
