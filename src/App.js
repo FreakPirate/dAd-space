@@ -21,6 +21,7 @@ const App = ({handleDisconnect, userDetails}) => {
 	];
 
 	const [selectedView, setSelectedView] = useState('newAd');
+	// const [isLoading, setIsLoading] = useState(true);
 
 	const [isUploaded, setIsUploaded] = useState(false);
 
@@ -66,9 +67,11 @@ const App = ({handleDisconnect, userDetails}) => {
 				const personas = [luxury ? 'luxury' : '', thrift ? 'thrift' : '', bulk ? 'bulk' : '', frequent ? 'frequent' : ''].filter(e => e);
 				const signerAddress = await signer.getAddress();
 
-				const a = {adId, spendLimit, imageUrl, imageSize, ctaText, ctaDescription, personas, clickTag, signerAddress};
-				console.log(a);
+				const adData = {adId, spendLimit, imageUrl, imageSize, ctaText, ctaDescription, personas, clickTag, signerAddress};
+				console.log(adData);
+
 				const nftTxn = await nftContract.submitTransaction(adId, spendLimit, imageUrl, imageSize, ctaText, ctaDescription, personas, clickTag, signerAddress);
+				// setIsLoading(true);
 
 				await nftTxn.wait();
 
@@ -76,12 +79,16 @@ const App = ({handleDisconnect, userDetails}) => {
 				const pastAds = JSON.parse(localStorage.getItem('pastAds') || '[]');
 				console.log('past ADS', pastAds);
 				localStorage.setItem('pastAds', JSON.stringify([adId, ...pastAds]));
+				// setIsLoading(false);
+				setSelectedView('pastAds');
 
 			} else {
 				console.log('Ethereum object not found');
+				// setIsLoading(false);
 			}
 		}
 		catch (error) {
+			// setIsLoading(false);
 			console.log('Error: ', error);
 		}
 	};
@@ -92,6 +99,11 @@ const App = ({handleDisconnect, userDetails}) => {
 
 	return (
 		<StyledApp>
+			{/* <StyledLoadingOverlay
+				active={isLoading}
+				spinner
+				text='Publishing your ad'
+			/> */}
 			<Layout>
 				<StyledSider width={250}>
 					<AppLogo className="logo">
@@ -199,3 +211,8 @@ const StyledLogout = styled(LogoutOutlined)`
 	color: #F73859;
 	font-size: 20px;
 `;
+
+// const StyledLoadingOverlay = styled(LoadingOverlay)`
+// 	height: 100vh !important;
+// 	background: transparent;
+// `
