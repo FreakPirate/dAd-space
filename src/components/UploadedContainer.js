@@ -2,9 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ImageCard from './ImageCard';
 import MetadataCheckboxContainer from './MetadataCheckboxContainer';
-import MetadataContainer from './MetadataContainer';
 import MetadataTextContainer from './MetadataTextContainer';
-import Navbar from './Navbar';
 import { useFormik } from 'formik';
 import { Button } from 'antd';
 
@@ -21,6 +19,7 @@ const UploadedContainer = (props) => {
 			frequent: false,
 			bulk: false,
 			spendLimit: '',
+			imageUrl: props.imageUrl || '',
 		},
 		enableReinitialize: true,
 		onSubmit: props.onSubmitHandler,
@@ -35,6 +34,7 @@ const UploadedContainer = (props) => {
 		bulk,
 		frequent,
 		spendLimit,
+		imageUrl,
 	} = formikForm.values;
 	
 	return (
@@ -60,6 +60,7 @@ const UploadedContainer = (props) => {
 					clickTag={clickTag}
 					spendLimit={spendLimit}
 					imageSize={imageSize}
+					imageUrl={imageUrl}
 				/>
 			</Container>
 			<MetadataCheckboxContainer
@@ -87,8 +88,7 @@ const Header = styled.div`
 	justify-content: end;
 	flex-direction: column;
 	align-items: flex-end;
-	height: 11%;
-	padding: 0px 93px;
+	height: 10%;
 `;
 
 const Container = styled.div`
@@ -105,27 +105,32 @@ const NavbarHeader = styled.div`
 `;
 
 const PublishButton = styled(Button)`
-	font-size: 25px;
+	font-size: 18px;
 	background-color: #f63859;
+	border: none;
+	display: flex;
+    align-items: center;
 	&.ant-btn {
-		height: 50px;
+		height: 40px;
 	}
 	& > span {
 		color: #fff;
 		font-weight: 600;
-		font-size: 19px;
+		font-size: 16px;
 	}
 `;
 const DiscardButton = styled(Button)`
-	font-size: 25px;
+	font-size: 18px;
 	background-color: transparent;
+	display: flex;
+    align-items: center;
 	&.ant-btn {
-		height: 50px;
+		height: 40px;
 	}
 	& > span {
 		color: #fff;
 		font-weight: 600;
-		font-size: 19px;
+		font-size: 16px;
 	}
 `;
 export default UploadedContainer;

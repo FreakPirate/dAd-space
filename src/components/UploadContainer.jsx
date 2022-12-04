@@ -1,11 +1,56 @@
 import { Image, message, Upload } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import uploadSvg from '../assets/upload.svg';
-import { InboxOutlined } from '@ant-design/icons';
 const { Dragger } = Upload;
+import AWS from 'aws-sdk'
+// require('dotenv').config()
+
+const S3_BUCKET ='dad-space';
+const REGION ='ap-south-1';
+
+AWS.config.update({
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+});
+
+const myBucket = new AWS.S3({
+    params: { Bucket: S3_BUCKET},
+    region: REGION,
+})
+
 
 const UploadContainer = (props) => {
+	const [progress , setProgress] = useState(0);
+	const { setImageUrl } = props;
+	const uploadFile = (file) => {
+		
+		const extensionRegex = /(?:\.([^.]+))?$/;
+		const extension = extensionRegex.exec(file.name)[1];
+		const name = encodeURIComponent(file.name).substring(0, file.name.lastIndexOf('.')) + Date.now() + '.' + extension;
+		const params = {
+			Body: file,
+			Bucket: S3_BUCKET,
+			Key: name
+		};
+
+		myBucket.putObject(params)
+			.on('httpUploadProgress', (evt) => {
+				setProgress(Math.round((evt.loaded / evt.total) * 100));
+				console.log(evt);
+			})
+			.on('complete', e => {
+				console.log(e);
+			})
+			.send((err) => {
+				if (err) console.log('new errrrrrr', err)
+			});
+		const url = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${name}`;
+		setImageUrl(url);
+		
+	};
+
+	
 	const prop = {
 		name: 'file',
 		onChange(info) {
@@ -20,9 +65,8 @@ const UploadContainer = (props) => {
 				},
 				false
 			);
-
 			reader.readAsDataURL(info.file.originFileObj);
-
+			uploadFile(info.file.originFileObj);
 		},
 		onDrop(e) {
 			console.log('Dropped files', e.dataTransfer.files);
