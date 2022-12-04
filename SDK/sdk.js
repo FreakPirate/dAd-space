@@ -1,32 +1,119 @@
 // data - how many vertical and how many horizontal
-function getAdds() {
-    var url = "http://www.example.com/ads/";
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
-            // JSON.parse does not evaluate the attacker's scripts.
-            var resp = JSON.parse(xhr.responseText);
-            var horizontalResult = resp.horizontal;
-            var verticalResult = resp.vertical;
-            var squareResult = resp.square;
+function getUserPersonaAndFillAds() {
+    // thrift API call
+    var thrift = false;
+    var luxe = false;
+    var frequent = false;
+    var bulk = false;
+    var userPersona = "";
+    // fetch for thrift
+    fetch('https://reqbin.com/echo/post/json', { // to be changed
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userAddress})
+    })
+    .then(response => {
+        thrift = response;
+    });
+    
+    // fetch for luxe
+    fetch('https://reqbin.com/echo/post/json', { // to be changed
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'  
+    },
+    body: JSON.stringify({ userAddress})
+    })
+    .then(response => {
+        luxe = response;
+    });
 
+    // fetch for frequent
+    fetch('https://reqbin.com/echo/post/json', { // to be changed
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userAddress})
+    })
+    .then(response => {
+        frequent = response;
+    });
 
-            document.getElementById("dad-horizontal-add").innerHTML = `<img src={${horizontalResult.url}} onclick={registerClick(${horizontalResult.id})}></img>`;
-            document.getElementById("dad-vertical-add").innerHTML = `<img src={${verticalResult.url}} onclick={registerClick(${verticalResult.id})}></img>`;
-            document.getElementById("dad-square-add").innerHTML = `<img src={${squareResult.url}} onclick={registerClick(${squareResult.id})}></img>`;
+    //fetch for bulk
+    fetch('https://reqbin.com/echo/post/json', { // to be changed
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userAddress})
+    })
+    .then(response => {
+        bulk = response;
+    });
+
+    if (thrift === false && luxe === false && frequent === false && bulk === false) {
+        userPersona =  "thrift";
+    } else {
+        if (thrift === true) {
+            userPersona = "thrift";
+        } else if (luxe === true) {
+            userPersona = "luxe";
+        } else if (frequent === true) {
+            userPersona = "frequent";
+        } else if (bulk === true) {
+            userPersona = "bulk";
         }
     }
-}
 
-
-function registerClick(id) {
-    var url = "http://www.example.com/ads/click/" + id;
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.send();
+    // Call API to get ad data for user persona
+    fetch('https://reqbin.com/echo/post/json', { // to be changed
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ userPersona})
+    })
+    .then(response => {
+        // display ads
+            document.getElementById("dad-vertical-add").innerHTML = `<img src={${response.url}} onclick={registerClick(${response.id})}></img>`;
+    });
 }
-    
+ 
 function testCall() {
     alert('yes you did it');
+}
+
+// for add click data
+function onAddClick(data) {
+    // API CALL TO REGISTER CLICK
+    fetch('https://reqbin.com/echo/post/json', { // to be changed
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "publisher_id": data.publisherId, ad_name: data.adName, impressions:0, clicks: 1, ad_id: data.addId, userId: data.userId, dappId: data.dappId })
+    })
+    .then(response => window.open(data.cta));
+}
+// for add impression data
+function onAddView(data) {
+    // API CALL TO REGISTER CLICK
+    fetch('https://reqbin.com/echo/post/json', { // to be changed
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "publisher_id": data.publisherId, ad_name: data.adName, impressions:1, clicks: 0, ad_id: data.addId, userId: data.userId, dappId: data.dappId })
+    })
+    .then(response => console.log(response));
 }
