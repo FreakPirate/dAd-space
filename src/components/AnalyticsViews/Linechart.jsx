@@ -10,7 +10,7 @@ const Linechart = (props) => {
 
 	const asyncFetch = () => {
 		fetch(
-			`/analytics/${props.userId}/timeseries/${props.name.toLowerCase()}`
+			`http://35.154.128.152:3000/analytics/${props.userId}/timeseries/${props.name.toLowerCase()}`
 		)
 			.then((response) => response.json())
 			.then((json) => setData(json))
