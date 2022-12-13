@@ -8,7 +8,7 @@ import NotificationTile from './NotificationTile';
 
 const Notifications = ({userId}) => {
 
-	const PK = '42b625180101ea78fa3df31daa5f3ce99b3062c8ac514e0f762f2f46599eece6'; // channel private key
+	const PK = ''; // channel private key
 	const Pkey = `0x${PK}`;
 	const signer = new ethers.Wallet(Pkey);
 	const [isFetching, setIsFetching] = useState(false);
